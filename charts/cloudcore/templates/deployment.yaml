@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    k8s-app: kubeedge
-    kubeedge: cloudcore
+    k8s-app: {{ .Release.Name}}-kubeedge
+    kubeedge: {{ .Release.Name}}-cloudcore
   name: {{ .Release.Name}}-cloudcore
 spec:
   selector:
     matchLabels:
-      k8s-app: kubeedge
-      kubeedge: cloudcore
+      k8s-app: {{ .Release.Name}}-kubeedge
+      kubeedge: {{ .Release.Name}}-cloudcore
   template:
     metadata:
       labels:
-        k8s-app: kubeedge
-        kubeedge: cloudcore
+        k8s-app: {{ .Release.Name}}-kubeedge
+        kubeedge: {{ .Release.Name}}-cloudcore
     spec:
       hostNetwork: true
       containers:
@@ -27,6 +27,9 @@ spec:
           protocol: TCP
         - containerPort: 10002
           name: cloudhub-cert
+          protocol: TCP
+        - containerPort: 10001
+          name: cloudhub-quic
           protocol: TCP
         resources:
           limits:

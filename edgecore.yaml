@@ -1,0 +1,48 @@
+# With --minconfig , you can easily used this configurations as reference.
+# It's useful to users who are new to KubeEdge, and you can modify/create your own configs accordingly. 
+# This configuration is suitable for beginners.
+
+apiVersion: edgecore.config.kubeedge.io/v1alpha1
+database:
+  dataSource: /var/lib/kubeedge/edgecore.db
+kind: EdgeCore
+modules:
+  edgeHub:
+    enable: false
+    heartbeat: 15
+    httpServer: https://192.168.0.193:10002
+    tlsCaFile: /etc/kubeedge/ca/rootCA.crt
+    tlsCertFile: /etc/kubeedge/certs/server.crt
+    tlsPrivateKeyFile: /etc/kubeedge/certs/server.key
+    token: "45ee4d347069d9cb4afa61c39885efdf2ba4c63ba214aa5b8651a1fbd18bf7b5.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MjcxMTY4MjR9.sGA8lry7QwJXX2n1eHCQQUdnh5aLgA-j-cjp1V4MZjQ"
+    websocket:
+      enable: true
+      handshakeTimeout: 30
+      readDeadline: 15
+      server: 192.168.0.193:10000
+      writeDeadline: 15
+  edged:
+    cgroupDriver: cgroupfs
+    cgroupRoot: ""
+    cgroupsPerQOS: true
+    clusterDNS: ""
+    clusterDomain: ""
+    devicePluginEnabled: false
+    dockerAddress: unix:///var/run/docker.sock
+    enable: false
+    gpuPluginEnabled: false
+    hostnameOverride: deep
+    nodeIP: 192.168.0.193
+    podSandboxImage: kubeedge/pause:3.1
+    remoteImageEndpoint: unix:///var/run/dockershim.sock
+    remoteRuntimeEndpoint: unix:///var/run/dockershim.sock
+    runtimeType: docker
+  eventBus:
+    enable: false
+    mqttMode: 2
+    mqttQOS: 0
+    mqttRetain: false
+    mqttServerExternal: tcp://127.0.0.1:1883
+    mqttServerInternal: tcp://127.0.0.1:1884
+
+

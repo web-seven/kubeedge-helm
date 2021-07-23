@@ -7,13 +7,16 @@ metadata:
     kubeedge: cloudcore
 data:
   cloudcore.yaml: |
-    apiVersion: cloudcore.config.kubeedge.io/v1alpha2
+    apiVersion: cloudcore.config.kubeedge.io/v1alpha1
     kind: CloudCore
     kubeAPIConfig:
       kubeConfig: ""
       master: ""
     modules:
       cloudHub:
+        advertiseAddress:
+          - 35.246.187.246
+          - 10.156.0.54
         nodeLimit: 10
         tlsCAFile: /etc/kubeedge/ca/rootCA.crt
         tlsCertFile: /etc/kubeedge/certs/edge.crt
