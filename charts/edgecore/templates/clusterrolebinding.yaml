@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name}}-cloudcore
+  labels:
+    k8s-app: kubeedge
+    kubeedge: cloudcore
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name}}-cloudcore
+subjects:
+- kind: ServiceAccount
+  name: {{ .Release.Name}}-cloudcore
+  namespace: {{ .Release.Namespace }}
